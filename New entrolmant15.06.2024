@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Portal Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <style>
+        /* Importing Google font - Poppins */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background-image: url(Copy-of-BINUS-Apa-Itu-Strategi-Marketing-Communication-dan-Contoh-Penerapannya_\ -\ Copy.jpg);
+            display: flex;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 85px;
+            display: flex;
+            overflow-x: hidden;
+            flex-direction: column;
+            background: #161a2d;
+            padding: 25px 20px;
+            transition: all 0.4s ease;
+        }
+
+        .sidebar .logo-container {
+            text-align: center;
+            padding: 15px 0;
+            display: flex;
+        }
+
+        .sidebar:hover {
+            width: 260px;
+        }
+
+        .sidebar .sidebar-header img {
+            margin-top: auto;
+            padding: 28px 10px;
+            margin-left: -30px;
+        }
+
+        .sidebar .sidebar-header {
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar .sidebar-header .logo-container img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .sidebar .sidebar-header h1 {
+            color: #fff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            white-space: nowrap;
+            margin-left: 23px;
+        }
+
+        .sidebar:hover .sidebar-header .logo-container {
+            display: none;
+        }
+
+        .sidebar-links h3 {
+            color: #fff;
+            font-weight: 10OPX;
+            white-space: nowrap;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .sidebar-links h3 span {
+            opacity: 0;
+        }
+
+        .sidebar:hover .sidebar-links h3 span {
+            opacity: 1;
+        }
+
+        .sidebar-links .menu-separator {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            transform: scaleX(1);
+            transform: translateY(-50%);
+            background: #4f52ba;
+            transform-origin: right;
+            transition-delay: 0.2s;
+        }
+
+        .sidebar:hover .sidebar-links .menu-separator {
+            transition-delay: 0s;
+            transform: scaleX(0);
+        }
+
+        .sidebar-links {
+            list-style: none;
+            margin-top: 20px;
+            height: 80%;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+
+        .sidebar-links::-webkit-scrollbar {
+            display: none;
+        }
+
+        .sidebar-links li a {
+            display: flex;
+            align-items: center;
+            gap: 0 20px;
+            color: #fff;
+            font-weight: 500;
+            white-space: nowrap;
+            padding: 15px 10px;
+            text-decoration: none;
+            transition: 0.2s ease;
+        }
+
+        .sidebar-links li a:hover {
+            color: #727792;
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        .sidebar-header .hide.brand.text {
+            display: none;
+        }
+
+        .sidebar-header .hide .brand.logo {
+            display: block;
+            width: 100%;
+            height: 75%;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #0a0a0a;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .content {
+            margin-left: 260px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .content h3 {
+            border-bottom: 2px solid #FD924E;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        form .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            margin-bottom: 5px;
+        }
+
+        form input[type="text"],
+        form input[type="date"],
+        form input[type="email"],
+        form textarea,
+        form select {
+            padding: 8px;
+            border: 1px solid #d79797;
+            border-radius: 5px;
+        }
+
+        form button {
+            background-color: #022e5b;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 20%;
+            height: 40px;
+            align-self: flex-end;
+        }
+
+        form button:hover {
+            background-color: #74afea;
+        }
+
+        .form-full-width {
+            grid-column: span 2;
+        }
+
+        .form-group.radio-group {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar-header {
+            margin-left: 1px;
+        }
+
+        .new-enrolment h1 {
+            font-size: xx-large;
+        }
+
+        .sidebar .hide {
+            display: none;
+        }
+
+        .radio-group {
+            display: flex;
+            align-items: baseline;
+        }
+
+        .radio-group div {
+            display: flex;
+        }
+ </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <img src="logoiat.jpg" alt="logo" />
+            </div>
+            <h1>IMS</h1>
+        </div>
+        <div id="conversation-page-container">
+            <h3 id="conversation-page-name">Conversation: [New Enrolment]</h3>
+        <ul class="sidebar-links">
+            <h3><span>Main Menu</span></h3>
+            <li>
+                <div class="dropdown">
+                <a href="file:///C:/Users/Theeviha/Desktop/ims%20web%20file/home%20page.html">
+                    <span class="material-symbols-outlined">home</span>Home
+                </a>
+                </div>
+            </li>
+            <li>
+                <div class="dropdown">
+                <a href="file:///C:/Users/Theeviha/Desktop/ims%20web%20file/New%20Enrolment%20page.html">
+                    <span class="material-symbols-outlined">edit_note</span>New Enrolment
+                </a>
+            </div>
+            </li>
+            <li>
+                <div class="dropdown">
+                <a href="file:///C:/Users/Theeviha/Desktop/ims%20web%20file/filter%20page.html">
+                    <span class="material-symbols-outlined">filter_alt</span>Filters
+                </a>
+            </div>
+            </li>
+            <li>
+                <div class="dropdown">
+                    <a href="file:///C:/Users/Theeviha/Desktop/ims%20web%20file/Update%20Student%20Details%20page.html">
+                        <span class="material-symbols-outlined">ios_share</span>Update Details
+                    </a>
+                </div>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="material-symbols-outlined">delete</span>Delete Details
+                </a>
+            </li>
+            <li>
+                <div class="dropdown">
+                    <a href="#" >
+                        <span class="material-symbols-outlined">more_horiz</span>More
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#">Class</a>
+                        <a href="#">Dashboard</a>
+                        <a href="#">Tasks</a>
+                        <a href="#">Capstone</a>
+                        <a href="#">Queries</a>
+                        <a href="#">Requirements</a>
+                        <a href="#">Portfolio – Submission</a>
+                        <a href="#">Applications</a>
+                        <a href="#">Interview Tasks</a>
+                        <a href="#">Mock interviews</a>
+                        <a href="#">Leave – applications</a>
+                        <a href="#">Certificate</a>
+                        <a href="#">Testimonial</a>
+                        <a href="#">Leaderboard</a>
+                        <a href="#">Placement</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        
+        
+    </aside>
+    <div class="content">
+        <section id="new-enrolment">
+            <center><b><h1>Ibhan Management System</h1></b></center>
+            <h3>New Enrolment</h3>
+            <form>
+                <div class="form-group">
+                    <label for="dob">Student Name:</label>
+                    <input type="text" id="Student Name" name="Student Name" placeholder="Enter Student Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" required>             
+               </div>
+                <div class="form-group">
+                    <label for="dob">Aadhar Number:</label>
+                    <input type="text" id="Aadhar Number" name="Aadhar Number" placeholder="Enter Aadhar Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone-number">Phone Number:</label>
+                    <input type="text" id="Phone Number" name="Phone Number" placeholder="Enter Phone Number " required>
+
+                </div>
+                <div class="form-group">
+                    <label for="alternate-phone">Alternate Phone Number:</label>
+                    <input type="text" id="Phone Number" name="Phone Number" placeholder="Enter Alternate Phone Number" required>
+
+                </div>
+                <div class="form-group">
+                    <label for="email">E-Mail:</label>
+                    <input type="text" id="E-Mail" name="E-Mail" placeholder="Enter E-Mail" required>
+
+                </div>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" id="Address" name="Address" placeholder="Enter Address" required>
+
+                </div>
+                <div class="form-group">
+                    <label for="city">City / Village:</label>
+                    <input type="text" id="City / Village" name="City / Village" placeholder="Enter City / Village" required>
+                </div>
+               
+                <div class="form-group">
+                    <label for="district">State:</label>
+                    <select id="district" name="district">
+                        <option value="district1">Andhra Pradesh</option>
+                        <option value="district2">Bihar</option>
+                        <option value="district3">Gujarat</option>
+                        <option value="district3">Jharkhand</option>
+                        <option value="district3">Madhya Pradesh</option>
+                        <option value="district3">Meghalaya</option>
+                        <option value="district3">Odisha</option>
+                        <option value="district3">Arunachal Pradesh</option>
+                        <option value="district3">Chhattisgarh</option>
+                        <option value="district3">Haryana</option>
+                        <option value="district3">Karnataka</option>
+                        <option value="district3">Maharashtra</option>
+                        <option value="district3">Mizoram</option>
+                        <option value="district3">Punjab</option>
+                        <option value="district3">Assam</option>
+                        <option value="district3">Goa</option>
+                        <option value="district3">Himachal Pradesh</option>
+                        <option value="district3">Kerala</option>
+                        <option value="district3">Manipur</option>
+                        <option value="district3">Nagaland</option>
+                        <option value="district3">Sikkim</option>
+                        <option value="district3">Tamil Nadu</option>
+                        <option value="district3">Telangana</option>
+                        <option value="district3">Tripura</option>
+                        <option value="district3">Uttarakhand</option>
+                        <option value="district3">West Bengal</option>
+                        <option value="district3">Rajasthan</option>
+                       
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="district">District:</label>
+                    <select id="district" name="district">
+                        <option value="district1">Chennai</option>
+                        <option value="district2">Salem</option>
+                        <option value="district3">Chengalpattu</option>
+                        <option value="district3">Tiruchirappalli</option>
+                        <option value="district3">Vellore</option>
+                        <option value="district3">Kanchipuram</option>
+                        <option value="district3">Coimbatore</option>
+                        <option value="district3">Tiruppur</option>
+                        <option value="district3">Tiruvannamalai</option>
+                        <option value="district3">Thanjavur</option>
+                        <option value="district3">Villupuram</option>
+                        <option value="district3">Erode</option>
+                        <option value="district3">Dindigul</option>
+                        <option value="district3">Madurai</option>
+                        <option value="district3">Namakkal</option>
+                        <option value="district3">Virudhunagar</option>
+                        <option value="district3">Kanyakumari</option>
+                        <option value="district3">Tirunelveli</option>
+                        <option value="district3">Ramanathapuram</option>
+                        <option value="district3">Tuticorin</option>
+                        <option value="district3">Ranipettai</option>
+                        <option value="district3">Pudukkottai</option>
+                        <option value="district3">Nagapattinam</option>
+                        <option value="district3">Sivaganga</option>
+                        <option value="district3">Kallakurichi</option>
+                        <option value="district3">Theni</option>
+                        <option value="district3">Ariyalur</option>
+                        <option value="district3">Vellore (West)</option>
+                        <option value="district3">Tenkasi</option>
+                        <option value="district3">Krishnagiri</option>
+                        <option value="district3">Tenkasi (South)</option>
+                        <option value="district3">Mailam</option>
+                        <option value="district3">The Nilgiris</option>
+                        <option value="district3">Namakkal (East)</option>
+                        <option value="district3">Kallakurichi (North)</option>
+                        <option value="district3">Perambalur</option>
+                        <option value="district3">Dharapuram</option>
+                    
+                        <!-- Add all other Indian districts here -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pincode">Pincode:</label>
+                    <input type="text" id="Pincode" name="Pincode" placeholder="Enter Pincode" required>
+                </div>
+                <div class="form-group form-full-width">
+                <button text="Next"><a href="Qualification Details page.html">Next</button></a>
+
+                </div>
+            </form>
+        </section>
+    </div>
+    <script>
+        function validateForm() {
+            const form = document.querySelector('form');
+            const inputs = form.querySelectorAll('input, select');
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (!input.value) {
+                    isValid = false;
+                    input.style.borderColor = 'red';
+                } else {
+                    input.style.borderColor = '#d79797';
+                }
+            });
+    
+            if (isValid) {
+                window.location.href = "Qualification Details page.html";
+            } else {
+                alert('Please fill out all fields.');
+            }
+        }
+     </script>
+</body>
+</html>
